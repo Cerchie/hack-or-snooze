@@ -20,9 +20,9 @@ $(async function() {
 	await checkIfLoggedIn();
 
 	/**
-   * Event listener for logging in.
-   *  If successfully we will setup the user instance
-   */
+	 * Event listener for logging in.
+	 *  If successfully we will setup the user instance
+	 */
 
 	$loginForm.on('submit', async function(evt) {
 		evt.preventDefault(); // no page-refresh on submit
@@ -40,9 +40,9 @@ $(async function() {
 	});
 
 	/**
-   * Event listener for signing up.
-   *  If successfully we will setup a new user instance
-   */
+	 * Event listener for signing up.
+	 *  If successfully we will setup a new user instance
+	 */
 
 	$createAccountForm.on('submit', async function(evt) {
 		evt.preventDefault(); // no page refresh
@@ -60,8 +60,8 @@ $(async function() {
 	});
 
 	/**
-   * Log Out Functionality
-   */
+	 * Log Out Functionality
+	 */
 
 	$navLogOut.on('click', function() {
 		// empty out local storage
@@ -71,8 +71,8 @@ $(async function() {
 	});
 
 	/**
-   * Event Handler for Clicking Login
-   */
+	 * Event Handler for Clicking Login
+	 */
 
 	$navLogin.on('click', function() {
 		// Show the Login and Create Account Forms
@@ -82,8 +82,8 @@ $(async function() {
 	});
 
 	/**
-   * Event handler for Navigation to Homepage
-   */
+	 * Event handler for Navigation to Homepage
+	 */
 
 	$('body').on('click', '#nav-all', async function() {
 		hideElements();
@@ -92,9 +92,9 @@ $(async function() {
 	});
 
 	/**
-   * On page load, checks local storage to see if the user is already logged in.
-   * Renders page information accordingly.
-   */
+	 * On page load, checks local storage to see if the user is already logged in.
+	 * Renders page information accordingly.
+	 */
 
 	async function checkIfLoggedIn() {
 		// let's see if we're logged in
@@ -113,8 +113,8 @@ $(async function() {
 	}
 
 	/**
-   * A rendering function to run to reset the forms and hide the login info
-   */
+	 * A rendering function to run to reset the forms and hide the login info
+	 */
 
 	function loginAndSubmitForm() {
 		// hide the forms for logging in and signing up
@@ -133,9 +133,9 @@ $(async function() {
 	}
 
 	/**
-   * A rendering function to call the StoryList.getStories static method,
-   *  which will generate a storyListInstance. Then render it.
-   */
+	 * A rendering function to call the StoryList.getStories static method,
+	 *  which will generate a storyListInstance. Then render it.
+	 */
 
 	async function generateStories() {
 		// get an instance of StoryList
@@ -173,8 +173,9 @@ $(async function() {
       <li id="${story.storyId}">
       ${trashCanIcon}
       <span class="star">
-          <i class="${starType} fa-star"></i>
-        </span>
+        <i class="${starType} fa-star"></i>
+		</span>
+		<span class="star">
         <a class="article-link" href="${story.url}" target="a_blank">
           <strong>${story.title}</strong>
         </a>
@@ -214,8 +215,8 @@ $(async function() {
 		return favStoryIds.has(story.storyId);
 	}
 	/**
-   * A function to add a new story to the DOM if a user is logged in
-   */
+	 * A function to add a new story to the DOM if a user is logged in
+	 */
 	function submitClick() {
 		$('#nav-submit').on('click', async function(e) {
 			e.preventDefault();
@@ -232,6 +233,11 @@ $(async function() {
 			generateFaves();
 			$favoritedStories.show();
 		}
+	});
+
+	$body.on('click', '#nav-all', function() {
+		$favoritedStories.hide();
+		console.log('click');
 	});
 
 	function generateFaves() {
